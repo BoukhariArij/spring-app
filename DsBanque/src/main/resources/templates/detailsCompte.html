@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Détails du compte</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+
+    <h1 class="text-center mb-4">Détails du compte</h1>
+
+    <table class="table table-dark table-hover text-center">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulaire</th>
+                <th>Solde</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text="${c.id}"></td>
+                <td th:text="${c.titulaire}"></td>
+                <td th:text="${c.solde}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6">
+            <form th:action="@{/depot/{id}(id=${c.id})}" method="post" class="mb-3">
+                <div class="input-group">
+                    <input type="number" step="0.01" name="montant" class="form-control" placeholder="Montant à déposer" required>
+                    <button type="submit" class="btn btn-success">Déposer</button>
+                </div>
+            </form>
+
+            <form th:action="@{/retrait/{id}(id=${c.id})}" method="post">
+                <div class="input-group">
+                    <input type="number" step="0.01" name="montant" class="form-control" placeholder="Montant à retirer" required>
+                    <button type="submit" class="btn btn-danger">Retirer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
